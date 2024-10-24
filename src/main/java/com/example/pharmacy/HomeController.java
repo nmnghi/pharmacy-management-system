@@ -123,7 +123,7 @@ public class HomeController implements Initializable {
                 logout.getScene().getWindow().hide();
 
 
-                Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
                 root.setOnMouseClicked(event -> {
