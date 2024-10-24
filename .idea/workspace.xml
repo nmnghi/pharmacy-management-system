@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="aed61a62-a850-4d0f-a5c5-c1b03611cf03" name="Changes" comment="first commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/HelloApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +32,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/nmnghi/Pharmacy-Management-System.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/nmnghi/pharmacy-management-system.git&quot;,
     &quot;accountId&quot;: &quot;374b9a96-994d-465d-a3a3-d0de6788d307&quot;
   }
 }</component>
@@ -66,7 +67,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -101,6 +102,10 @@
       <workItem from="1729791801561" duration="488000" />
       <workItem from="1729792318529" duration="57000" />
       <workItem from="1729792378422" duration="13000" />
+      <workItem from="1729792400359" duration="112000" />
+      <workItem from="1729792532431" duration="466000" />
+      <workItem from="1729793328764" duration="70000" />
+      <workItem from="1729793401087" duration="78000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -110,7 +115,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729792150072</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="first commit">
+      <option name="closed" value="true" />
+      <created>1729792493493</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1729792493493</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

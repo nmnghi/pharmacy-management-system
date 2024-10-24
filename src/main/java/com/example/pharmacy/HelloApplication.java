@@ -10,8 +10,8 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
-    private double x=0;
-    private double y=0;
+    private double x;
+    private double y;
 
     @Override
     public void start(Stage stage) throws IOException {
