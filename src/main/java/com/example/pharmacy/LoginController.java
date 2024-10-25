@@ -2,35 +2,43 @@ package com.example.pharmacy;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ResourceBundle;
 
-public class LoginController {
-    @FXML
-    private Button close;
-
-    @FXML
-    private Button loginBtn;
-
+public class LoginController implements Initializable {
     @FXML
     private AnchorPane main_form;
+
+    @FXML
+    private TextField username;
 
     @FXML
     private PasswordField password;
 
     @FXML
-    private TextField username;
+    private Button loginBtn;
+
+    @FXML
+    private Button close;
 
     private PreparedStatement prepare;
     private Connection connect;
     private ResultSet result;
+
+    private double x = 0;
+    private double y = 0;
 
     public void loginAdmin(){
         String sql = "SELECT * FROM Admin WHERE username = ? AND password = ?";
@@ -70,6 +78,20 @@ public class LoginController {
                     Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root);
+
+                    root.setOnMousePressed((MouseEvent event) -> {
+                        x = event.getSceneX();
+                        y = event.getSceneY();
+                    });
+
+                    root.setOnMouseDragged((MouseEvent event) -> {
+                        stage.setX(event.getScreenX() - x);
+                        stage.setY(event.getScreenY() - y);
+
+                    });
+
+                    stage.initStyle(StageStyle.TRANSPARENT);
+
                     stage.setScene(scene);
                     stage.show();
                 }else{
@@ -89,4 +111,8 @@ public class LoginController {
         System.exit(0);
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb){
+        //TODO
+    }
 }

@@ -8,7 +8,7 @@ public class database {
         try{
             Class.forName("com.mysql.jdbc.Driver");
 
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy?useSSL=false", "root", "123456789");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/Pharmacy?useSSL=false", "root", "123456");
             return connect;
         } catch (Exception e) {
             e.printStackTrace();

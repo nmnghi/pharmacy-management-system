@@ -1,3 +1,7 @@
+.left-form{
+    -fx-background-color: #333856;
+}
+
 .right-form{
     -fx-background-color: #fff;
     -fx-border-color: #000;
@@ -17,7 +21,7 @@
     -fx-background-color: transparent;
     -fx-border-color: #000;
     -fx-border-width: .4px;
-    -fx-border-radius: .4px;
+    -fx-border-radius: 4px;
     -fx-font-size: 13px;
     -fx-font-family: "Tahoma";
 }

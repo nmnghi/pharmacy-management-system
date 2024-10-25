@@ -4,39 +4,37 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
-
 public class LoginScreen extends Application {
-    private double x;
-    private double y;
+    private double x = 0;
+    private double y = 0;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene scene = new Scene(root);
 
-        root.setOnMouseClicked(event -> {
+        root.setOnMouseClicked((MouseEvent event) -> {
             x = event.getSceneX();
             y = event.getSceneY();
         });
 
-        root.setOnMouseDragged(event -> {
+        root.setOnMouseDragged((MouseEvent event) -> {
             stage.setX(event.getScreenX() - x);
             stage.setY(event.getScreenY() - y);
 
             stage.setOpacity(.8);
         });
 
-        root.setOnMouseReleased(event -> {
+        root.setOnMouseReleased((MouseEvent event) -> {
             stage.setOpacity(1);
         });
 
         stage.initStyle(StageStyle.TRANSPARENT);
-        String css = this.getClass().getResource("/com/example/pharmacy/loginDesign.css").toExternalForm();
-        scene.getStylesheets().add(css);
+
         stage.setScene(scene);
         stage.show();
     }
