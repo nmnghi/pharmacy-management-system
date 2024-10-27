@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aed61a62-a850-4d0f-a5c5-c1b03611cf03" name="Changes" comment="change file name">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/medicineData.java" afterDir="false" />
+    <list default="true" id="aed61a62-a850-4d0f-a5c5-c1b03611cf03" name="Changes" comment="add big stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/query.sql" beforeDir="false" afterPath="$PROJECT_DIR$/query.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/LoginScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/getData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/getData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/medicineData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/medicineData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/pharmacy/home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/pharmacy/home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/pharmacy/homeDesign.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/pharmacy/homeDesign.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/pharmacy/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/pharmacy/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/pharmacy/loginDesign.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/pharmacy/loginDesign.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,28 +55,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HelloApplication.executor": "Run",
-    "Application.LoginScreen.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/PC/Downloads/fontawesomefx-8.2.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.44252872",
-    "settings.editor.selected.configurable": "preferences.JavaFX",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LoginScreen.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/AppData/Local/SceneBuilder/SceneBuilder.exe&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.44252872&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/com/example/pharmacy" />
@@ -140,7 +134,14 @@
       <workItem from="1729793401087" duration="493000" />
       <workItem from="1729793900576" duration="841000" />
       <workItem from="1729829680417" duration="155000" />
-      <workItem from="1729839336735" duration="4071000" />
+      <workItem from="1729839336735" duration="4167000" />
+      <workItem from="1729843581260" duration="14000" />
+      <workItem from="1729850641105" duration="244000" />
+      <workItem from="1729940864298" duration="15000" />
+      <workItem from="1729943021664" duration="50000" />
+      <workItem from="1730031440566" duration="3562000" />
+      <workItem from="1730035027696" duration="51000" />
+      <workItem from="1730035126269" duration="2531000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -174,7 +175,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729794249049</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add big stuff">
+      <option name="closed" value="true" />
+      <created>1729843438658</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729843438658</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,7 +215,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="change file name" />
-    <option name="LAST_COMMIT_MESSAGE" value="change file name" />
+    <MESSAGE value="add big stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="add big stuff" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

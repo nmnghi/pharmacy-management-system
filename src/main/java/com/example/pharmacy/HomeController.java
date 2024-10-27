@@ -61,46 +61,37 @@ public class HomeController implements Initializable {
     private TextField addMedicines_productName;
 
     @FXML
-    private TextField addMedicines_price;
-
-    @FXML
-    private TextField addMedicines_search;
-
-    @FXML
     private ComboBox<?> addMedicines_category;
+
+    @FXML
+    private  TextField addMedicines_quantity;
+
+    @FXML
+    private TextField addMedicines_price;
 
     @FXML
     private ComboBox<?> addMedicines_status;
 
     @FXML
-    private Button addMedicines_clearBtn;
-
-    @FXML
-    private Button addMedicines_addBtn;
-
-    @FXML
-    private Button addMedicines_updateBtn;
-
-    @FXML
-    private Button addMedicines_deleteBtn;
+    private TextField addMedicines_search;
 
     @FXML
     private TableView<medicineData> addMedicines_tableView;
 
     @FXML
-    private TableColumn<medicineData, String> addMedicines_col_category;
-
-    @FXML
-    private TableColumn<medicineData, String> addMedicines_col_date;
-
-    @FXML
     private TableColumn<medicineData, String> addMedicines_col_medicineID;
 
     @FXML
-    private TableColumn<medicineData, String> addMedicines_col_price;
+    private TableColumn<medicineData, String> addMedicines_col_productName;
 
     @FXML
-    private TableColumn<medicineData, String> addMedicines_col_productName;
+    private TableColumn<medicineData, String> addMedicines_col_category;
+
+    @FXML
+    private TableColumn<medicineData, String> addMedicines_col_quantity;
+
+    @FXML
+    private TableColumn<medicineData, String> addMedicines_col_price;
 
     @FXML
     private TableColumn<medicineData, String> addMedicines_col_status;
@@ -178,6 +169,7 @@ public class HomeController implements Initializable {
             addMedicineListCategory();
             addMedicineListStatus();
             addMedicineSearch();
+            addMedicineReset();
 
         }
 
@@ -207,7 +199,7 @@ public class HomeController implements Initializable {
 
     @FXML
     void addMedicineAdd() {
-        String sql = "INSERT INTO medicine (medicine_id, productName, category, status, price, date) "
+        String sql = "INSERT INTO medicine (medicine_id, productName, category, quantity, price, status) "
                 + "VALUES(?,?,?,?,?,?)";
 
         connect = database.connectDb();
@@ -218,8 +210,9 @@ public class HomeController implements Initializable {
             if (addMedicines_medicineID.getText().isEmpty()
             || addMedicines_productName.getText().isEmpty()
             || addMedicines_category.getSelectionModel().getSelectedItem() == null
-            || addMedicines_status.getSelectionModel().getSelectedItem() == null
-            || addMedicines_price.getText().isEmpty()) {
+            || addMedicines_quantity.getText().isEmpty()
+            || addMedicines_price.getText().isEmpty()
+            || addMedicines_status.getSelectionModel().getSelectedItem() == null) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
@@ -244,13 +237,9 @@ public class HomeController implements Initializable {
                     prepare.setString(1, addMedicines_medicineID.getText());
                     prepare.setString(2, addMedicines_productName.getText());
                     prepare.setString(3, (String) addMedicines_category.getSelectionModel().getSelectedItem());
-                    prepare.setString(4, (String) addMedicines_status.getSelectionModel().getSelectedItem());
+                    prepare.setString(4, addMedicines_quantity.getText());
                     prepare.setString(5, addMedicines_price.getText());
-
-                    Date date = new Date();
-                    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-
-                    prepare.setString(6, String.valueOf(sqlDate));
+                    prepare.setString(6, (String) addMedicines_status.getSelectionModel().getSelectedItem());
 
                     prepare.executeUpdate();
 
@@ -272,12 +261,7 @@ public class HomeController implements Initializable {
 
     @FXML
     void addMedicineUpdate() {
-        String sql = "UPDATE medicine SET productName = '"
-                + addMedicines_productName.getText() + "', type = '"
-                + addMedicines_category.getSelectionModel().getSelectedItem() + "', status = '"
-                + addMedicines_status.getSelectionModel().getSelectedItem() + "', price = '"
-                + addMedicines_price.getText() + "', WHERE medicine_id = '"
-                + addMedicines_medicineID.getText() + "'";
+        String sql = "UPDATE medicine SET productName = ?, category = ?, quantity = ?, price = ?, status = ? WHERE medicine_id = ?";
 
         connect = database.connectDb();
 
@@ -287,8 +271,9 @@ public class HomeController implements Initializable {
             if (addMedicines_medicineID.getText().isEmpty()
                     || addMedicines_productName.getText().isEmpty()
                     || addMedicines_category.getSelectionModel().getSelectedItem() == null
-                    || addMedicines_status.getSelectionModel().getSelectedItem() == null
-                    || addMedicines_price.getText().isEmpty()) {
+                    || addMedicines_quantity.getText().isEmpty()
+                    || addMedicines_price.getText().isEmpty()
+                    || addMedicines_status.getSelectionModel().getSelectedItem() == null) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
@@ -302,8 +287,15 @@ public class HomeController implements Initializable {
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get().equals(ButtonType.OK)) {
-                    statement = connect.createStatement();
-                    statement.executeUpdate(sql);
+                    prepare = connect.prepareStatement(sql);
+                    prepare.setString(1, addMedicines_productName.getText());
+                    prepare.setString(2, (String) addMedicines_category.getSelectionModel().getSelectedItem());
+                    prepare.setString(3, addMedicines_quantity.getText());
+                    prepare.setString(4, addMedicines_price.getText());
+                    prepare.setString(5, (String) addMedicines_status.getSelectionModel().getSelectedItem());
+                    prepare.setString(6, addMedicines_medicineID.getText());
+
+                    prepare.executeUpdate();
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
@@ -356,8 +348,9 @@ public class HomeController implements Initializable {
     void addMedicineReset() {
         addMedicines_medicineID.setText("");
         addMedicines_productName.setText("");
-        addMedicines_price.setText("");
         addMedicines_category.getSelectionModel().clearSelection();
+        addMedicines_quantity.setText("");
+        addMedicines_price.setText("");
         addMedicines_status.getSelectionModel().clearSelection();
     }
 
@@ -404,12 +397,12 @@ public class HomeController implements Initializable {
             medicineData medData;
 
             while (result.next()) {
-                medData = new medicineData(result.getInt("medicine_id"),
+                medData = new medicineData(result.getString("medicine_id"),
                         result.getString("productName"),
                         result.getString("category"),
-                        result.getString("status"),
+                        result.getInt("quantity"),
                         result.getInt("price"),
-                        result.getDate("date"));
+                        result.getString("status"));
 
                 listData.add(medData);
             }
@@ -429,16 +422,16 @@ public class HomeController implements Initializable {
         addMedicines_col_medicineID.setCellValueFactory(new PropertyValueFactory<>("medicineId"));
         addMedicines_col_productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
         addMedicines_col_category.setCellValueFactory(new PropertyValueFactory<>("category"));
+        addMedicines_col_quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         addMedicines_col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
         addMedicines_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
-        addMedicines_col_date.setCellValueFactory(new PropertyValueFactory<>("date"));
 
         addMedicines_tableView.setItems(addMedicineList);
     }
 
     @FXML
     void addMedicineSearch() {
-        String sql = "SELECT * FROM medicine WHERE medicine_id LIKE ? or productName LIKE ? or category LIKE ? or status LIKE ? or price LIKE ? or date LIKE ?";
+        String sql = "SELECT * FROM medicine WHERE medicine_id LIKE ? or productName LIKE ? or category LIKE ? or price LIKE ? or status LIKE ?";
 
         connect = database.connectDb();
 
@@ -450,7 +443,6 @@ public class HomeController implements Initializable {
             prepare.setString(3, "%" + addMedicines_search.getText() + "%");
             prepare.setString(4, "%" + addMedicines_search.getText() + "%");
             prepare.setString(5, "%" + addMedicines_search.getText() + "%");
-            prepare.setString(6, "%" + addMedicines_search.getText() + "%");
 
             result = prepare.executeQuery();
 
@@ -459,12 +451,12 @@ public class HomeController implements Initializable {
             medicineData medData;
 
             while (result.next()) {
-                medData = new medicineData(result.getInt("medicine_id"),
+                medData = new medicineData(result.getString("medicine_id"),
                         result.getString("productName"),
                         result.getString("category"),
-                        result.getString("status"),
+                        result.getInt("quantity"),
                         result.getInt("price"),
-                        result.getDate("date"));
+                        result.getString("status"));
 
                 listData.add(medData);
             }
@@ -487,6 +479,7 @@ public class HomeController implements Initializable {
 
         addMedicines_medicineID.setText(String.valueOf(medData.getMedicineId()));
         addMedicines_productName.setText(medData.getProductName());
+        addMedicines_quantity.setText(String.valueOf(medData.getQuantity()));
         addMedicines_price.setText(String.valueOf(medData.getPrice()));
     }
 

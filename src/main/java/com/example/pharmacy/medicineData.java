@@ -1,25 +1,23 @@
 package com.example.pharmacy;
 
-import java.sql.Date;
-
 public class medicineData {
-    private Integer medicineId;
+    private String medicineId;
     private String productName;
     private String category;
-    private String status;
+    private Integer quantity;
     private Integer price;
-    private Date date;
+    private String status;
 
-    public medicineData(Integer medicineId, String productName, String category, String status , Integer price, Date date){
+    public medicineData(String medicineId, String productName, String category, Integer quantity, Integer price, String status){
         this.medicineId = medicineId;
         this.productName = productName;
         this.category = category;
-        this.status = status;
+        this.quantity = quantity;
         this.price = price;
-        this.date = date;
+        this.status = status;
     }
 
-    public Integer getMedicineId(){
+    public String getMedicineId(){
         return medicineId;
     }
 
@@ -30,16 +28,17 @@ public class medicineData {
     public String getCategory(){
         return category;
     }
-    public String getStatus(){
-        return status;
+
+    public Integer getQuantity(){
+        return quantity;
     }
 
     public Integer getPrice(){
         return price;
     }
 
-    public Date getDate(){
-        return date;
+    public String getStatus(){
+        return status;
     }
 
 }

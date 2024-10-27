@@ -9,10 +9,10 @@ create table Admin(
 
 create table medicine(
 	id int auto_increment primary key,
-    medicine_id int not null,
+    medicine_id varchar(100) not null,
     productName varchar(100) not null,
     category varchar(100) not null,
-    status varchar(100) not null,
+    quantity int not null,
     price varchar(100) not null,
-    date Date not null
+    status varchar(100) not null
 );
