@@ -5,42 +5,54 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pharmacy.LoginController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pharmacy.LoginController">
    <children>
-      <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="main_form" prefHeight="497.0" prefWidth="750.0">
          <children>
-            <AnchorPane prefHeight="492.0" prefWidth="250.0" style="-fx-background-color: #333856;">
-               <children>
-                  <FontAwesomeIcon fill="#c75f78" glyphName="STETHOSCOPE" layoutX="84.0" layoutY="203.0" size="8em" />
-                  <Label layoutX="14.0" layoutY="231.0" text="Pharmacy Management System" textFill="#c85f77">
-                     <font>
-                        <Font name="Tahoma" size="16.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="250.0" prefHeight="492.0" prefWidth="450.0" styleClass="right-form" stylesheets="@loginDesign.css">
-               <children>
-                  <FontAwesomeIcon fill="#c85f77" glyphName="USER_MD" layoutX="194.0" layoutY="123.0" size="6em" />
-                  <Label layoutX="151.0" layoutY="142.0" text="Welcome, Admin!" textFill="#c85f77">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="loginBtn" layoutX="115.0" layoutY="315.0" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@loginDesign.css" text="Login" />
-                  <TextField fx:id="username" layoutX="115.0" layoutY="216.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Username" styleClass="textfield" stylesheets="@loginDesign.css" />
-                  <Button fx:id="closre" layoutX="287.0" layoutY="31.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="44.0" styleClass="close" stylesheets="@loginDesign.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
-                     <graphic>
-                        <FontAwesomeIcon glyphName="CLOSE" size="1.2em" />
-                     </graphic>
-                  </Button>
-                  <PasswordField fx:id="password" layoutX="115.0" layoutY="263.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Password" styleClass="textfield" stylesheets="@loginDesign.css" />
-               </children>
-            </AnchorPane>
+            <ImageView fitHeight="501.0" fitWidth="789.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@background.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="58.0" layoutY="98.0" text="Welcome Back!" textFill="#ec5a51">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="105.0" layoutY="143.0" text="Please enter your details" textFill="#ec5a51">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="loginBtn" layoutX="71.0" layoutY="288.0" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="40.0" prefWidth="210.0" styleClass="login-btn" stylesheets="@loginDesign.css" text="Login" />
+            <Button fx:id="closre" layoutX="655.0" layoutY="6.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="44.0" styleClass="close" stylesheets="@loginDesign.css" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="6.0">
+               <graphic>
+                  <FontAwesomeIcon glyphName="CLOSE" size="1.2em" />
+               </graphic>
+            </Button>
+            <TextField fx:id="username" layoutX="71.0" layoutY="191.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="210.0" promptText="Username" styleClass="textfield" stylesheets="@loginDesign.css" />
+            <PasswordField fx:id="password" layoutX="71.0" layoutY="237.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="210.0" promptText="Password" styleClass="textfield" stylesheets="@loginDesign.css" />
+            <Label layoutX="513.0" layoutY="39.0" text="PRODUCTS">
+               <font>
+                  <Font name="Tahoma" size="9.0" />
+               </font>
+            </Label>
+            <Label layoutX="677.0" layoutY="39.0" text="CONTACT">
+               <font>
+                  <Font name="Tahoma" size="9.0" />
+               </font>
+            </Label>
+            <Label layoutX="600.0" layoutY="39.0" text="ABOUT US">
+               <font>
+                  <Font name="Tahoma" size="9.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
