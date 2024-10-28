@@ -68,7 +68,7 @@ public class LoginController implements Initializable {
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
-                    alert.setContentText("Successfully login");
+                    alert.setContentText("Successfully login!");
                     alert.showAndWait();
 
                     //hide login form
