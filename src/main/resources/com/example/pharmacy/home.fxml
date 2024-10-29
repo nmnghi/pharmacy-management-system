@@ -19,7 +19,7 @@
     <children>
         <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
             <children>
-                <AnchorPane layoutX="-6.0" prefHeight="650.0" prefWidth="278.0" style="-fx-background-color: #333856;" styleClass="left-form" stylesheets="@homeDesign.css">
+                <AnchorPane layoutX="-6.0" prefHeight="650.0" prefWidth="278.0" styleClass="left-form" stylesheets="@homeDesign.css">
                     <children>
                         <FontAwesomeIcon fill="#c85f77" glyphName="USER_MD" layoutX="106.0" layoutY="113.0" size="7em" />
                         <Label layoutX="102.0" layoutY="149.0" text="Welcome," textFill="#c2cce5">

@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aed61a62-a850-4d0f-a5c5-c1b03611cf03" name="Changes" comment="add big stuff">
+    <list default="true" id="aed61a62-a850-4d0f-a5c5-c1b03611cf03" name="Changes" comment="merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/query.sql" beforeDir="false" afterPath="$PROJECT_DIR$/query.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/medicineData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/medicineData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/pharmacy/home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/pharmacy/home.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,6 +141,17 @@
       <workItem from="1730031440566" duration="3562000" />
       <workItem from="1730035027696" duration="51000" />
       <workItem from="1730035126269" duration="2531000" />
+      <workItem from="1730081318638" duration="151000" />
+      <workItem from="1730081540444" duration="322000" />
+      <workItem from="1730081885737" duration="66000" />
+      <workItem from="1730082004712" duration="19000" />
+      <workItem from="1730082203985" duration="50000" />
+      <workItem from="1730082273115" duration="22000" />
+      <workItem from="1730082490325" duration="27000" />
+      <workItem from="1730085618130" duration="30000" />
+      <workItem from="1730085898466" duration="991000" />
+      <workItem from="1730109136540" duration="17000" />
+      <workItem from="1730162009823" duration="37000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -183,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729843438658</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="merge">
+      <option name="closed" value="true" />
+      <created>1730074956360</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1730074956360</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,7 +234,9 @@
     <MESSAGE value="first commit" />
     <MESSAGE value="change file name" />
     <MESSAGE value="add big stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="add big stuff" />
+    <MESSAGE value="change interface and data showing" />
+    <MESSAGE value="merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
