@@ -12,24 +12,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
-import java.time.LocalDate;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.*;
+import java.sql.*;
 
 public class HomeController implements Initializable {
     @FXML
@@ -37,6 +27,15 @@ public class HomeController implements Initializable {
 
     @FXML
     private AnchorPane home_form;
+
+    @FXML
+    private AnchorPane addMedicines_form;
+
+    @FXML
+    private AnchorPane customer_form;
+
+    @FXML
+    private AnchorPane purchase_form;
 
     @FXML
     private TextField addMedicines_medicineID;
@@ -93,7 +92,7 @@ public class HomeController implements Initializable {
     private TextField customerPoints;
 
     @FXML
-    private AnchorPane addMedicines_form;
+    private TextField customer_search;
 
     @FXML
     private TableView<customerData> customer_tableView;
@@ -113,17 +112,8 @@ public class HomeController implements Initializable {
     @FXML
     private TableColumn<customerData, String> customer_col_points;
 
-//    @FXML
-//    private TableColumn<customerData, String> customer_col_total;
-
     @FXML
-    private Button customer_btn;
-
-    @FXML
-    private TextField customer_search;
-
-    @FXML
-    private AnchorPane customer_form;
+    private Label username;
 
     @FXML
     private Button logout;
@@ -132,20 +122,18 @@ public class HomeController implements Initializable {
     private Button medicines_btn;
 
     @FXML
+    private Button customer_btn;
+
+    @FXML
     private Button purchase_btn;
 
-    @FXML
-    private AnchorPane purchase_form;
-
-    @FXML
-    private Label username;
-
-    private double x;
-    private double y;
     private Connection connect;
     private PreparedStatement prepare;
     private Statement statement;
     private ResultSet result;
+
+    private double x = 0;
+    private double y = 0;
 
     @FXML
     void addMedicineAdd() {
@@ -687,7 +675,7 @@ public class HomeController implements Initializable {
             customer_form.setVisible(false);
             purchase_form.setVisible(false);
 
-            medicines_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77;");
+            medicines_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
             customer_btn.setStyle("-fx-background-color: #333856;");
             purchase_btn.setStyle("-fx-background-color: #333856;");
 
@@ -704,8 +692,8 @@ public class HomeController implements Initializable {
             customer_form.setVisible(true);
             purchase_form.setVisible(false);
 
-            customer_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77;");
             medicines_btn.setStyle("-fx-background-color: #333856;");
+            customer_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
             purchase_btn.setStyle("-fx-background-color: #333856;");
 
             customerShowListData();
@@ -718,9 +706,9 @@ public class HomeController implements Initializable {
             customer_form.setVisible(false);
             purchase_form.setVisible(true);
 
-            purchase_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77;");
-            customer_btn.setStyle("-fx-background-color: #333856;");
             medicines_btn.setStyle("-fx-background-color: #333856;");
+            customer_btn.setStyle("-fx-background-color: #333856;");
+            purchase_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
         }
     }
 
@@ -743,7 +731,7 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    void logout() throws IOException {
+    void logout() throws Exception {
         try{
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Message");

@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aed61a62-a850-4d0f-a5c5-c1b03611cf03" name="Changes" comment="delete unnecessary images">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/customerData.java" afterDir="false" />
+    <list default="true" id="aed61a62-a850-4d0f-a5c5-c1b03611cf03" name="Changes" comment="merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/pharmacy/database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/pharmacy/home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/pharmacy/home.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/pharmacy/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/pharmacy/login.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -64,7 +61,9 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/AppData/Local/SceneBuilder/SceneBuilder.exe&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -72,8 +71,8 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.44252872&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -83,11 +82,31 @@
       <recent name="$PROJECT_DIR$/src/main/java/com/example/pharmacy" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="LoginScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.pharmacy.LoginScreen" />
+      <module name="pharmacy" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.pharmacy.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.LoginScreen" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
       </set>
     </attachedChunks>
   </component>
@@ -113,12 +132,26 @@
       <workItem from="1729793328764" duration="70000" />
       <workItem from="1729793401087" duration="493000" />
       <workItem from="1729793900576" duration="841000" />
-      <workItem from="1729794746436" duration="334000" />
-      <workItem from="1729822853785" duration="14164000" />
-      <workItem from="1729866635937" duration="6881000" />
-      <workItem from="1729934142953" duration="8962000" />
-      <workItem from="1730003820810" duration="4038000" />
-      <workItem from="1730033417475" duration="6208000" />
+      <workItem from="1729829680417" duration="155000" />
+      <workItem from="1729839336735" duration="4167000" />
+      <workItem from="1729843581260" duration="14000" />
+      <workItem from="1729850641105" duration="244000" />
+      <workItem from="1729940864298" duration="15000" />
+      <workItem from="1729943021664" duration="50000" />
+      <workItem from="1730031440566" duration="3562000" />
+      <workItem from="1730035027696" duration="51000" />
+      <workItem from="1730035126269" duration="2531000" />
+      <workItem from="1730081318638" duration="151000" />
+      <workItem from="1730081540444" duration="322000" />
+      <workItem from="1730081885737" duration="66000" />
+      <workItem from="1730082004712" duration="19000" />
+      <workItem from="1730082203985" duration="50000" />
+      <workItem from="1730082273115" duration="22000" />
+      <workItem from="1730082490325" duration="27000" />
+      <workItem from="1730085618130" duration="30000" />
+      <workItem from="1730085898466" duration="991000" />
+      <workItem from="1730109136540" duration="17000" />
+      <workItem from="1730162009823" duration="37000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -152,15 +185,23 @@
       <option name="project" value="LOCAL" />
       <updated>1729794249049</updated>
     </task>
-    <task id="LOCAL-00005" summary="delete unnecessary images">
+    <task id="LOCAL-00005" summary="add big stuff">
       <option name="closed" value="true" />
-      <created>1729794964566</created>
+      <created>1729843438658</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1729794964566</updated>
+      <updated>1729843438658</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="merge">
+      <option name="closed" value="true" />
+      <created>1730074956360</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1730074956360</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,8 +233,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="change file name" />
-    <MESSAGE value="delete unnecessary images" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete unnecessary images" />
+    <MESSAGE value="add big stuff" />
+    <MESSAGE value="change interface and data showing" />
+    <MESSAGE value="merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
