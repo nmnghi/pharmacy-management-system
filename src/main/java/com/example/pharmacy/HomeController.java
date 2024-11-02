@@ -635,36 +635,40 @@ public class HomeController implements Initializable {
     }
 
     public void customerSearch(){
-        FilteredList<customerData> filter = new FilteredList<>(customerList, e -> true);
-        customer_search.textProperty().addListener((observable, oldValue, newValue) -> {
-            filter.setPredicate(predicateCustomerData -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
+        String sql = "SELECT * FROM Customer WHERE fullName LIKE ? or phoneNum LIKE ?";
 
-                String searchKey = newValue.toLowerCase();
+        connect = database.connectDb();
 
-                if(predicateCustomerData.getPhoneNumber().contains(searchKey)){
-                    return true;
-                }
-                else if(predicateCustomerData.getFullName().toLowerCase().contains(searchKey)){
-                    return true;
-                }
+        try {
+            prepare = connect.prepareStatement(sql);
 
-                else if (String.valueOf(predicateCustomerData.getLoyaltyPoints()).contains(searchKey)) {
-                    return true;
-                }
+            prepare.setString(1, "%" + customer_search.getText() + "%");
+            prepare.setString(2, "%" + customer_search.getText() + "%");
 
-                else if(predicateCustomerData.getRegistrationDate().toString().contains(searchKey)){
-                    return true;
-                } else {return false;}
-            });
-        });
+            result = prepare.executeQuery();
 
-        SortedList<customerData> sortedList = new SortedList<>(filter);
+            ObservableList<customerData> listData = FXCollections.observableArrayList();
 
-        sortedList.comparatorProperty().bind(customer_tableView.comparatorProperty());
-        customer_tableView.setItems(sortedList);
+            customerData cusData;
+
+            while (result.next()) {
+                cusData = new customerData(
+                        result.getInt("id"),
+                        result.getString("fullName"),
+                        result.getString("phoneNum"),
+                        result.getDate("registrationDate"),
+                        result.getInt("loyaltyPoints")
+                );
+
+
+                listData.add(cusData);
+            }
+
+            customer_tableView.setItems(listData);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
