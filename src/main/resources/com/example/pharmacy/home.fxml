@@ -270,7 +270,7 @@
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>
-                              <TextField fx:id="customer_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#addMedicineSearch" prefHeight="33.0" prefWidth="268.0" promptText="Search" styleClass="search" stylesheets="@homeDesign.css">
+                              <TextField fx:id="customer_search" layoutX="14.0" layoutY="14.0" onAction="#customerSearch" onKeyTyped="#addMedicineSearch" prefHeight="33.0" prefWidth="268.0" promptText="Search" styleClass="search" stylesheets="@homeDesign.css">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
