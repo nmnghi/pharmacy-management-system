@@ -37,6 +37,19 @@
     -fx-background-radius: 8px;
 }
 
+.card{
+    -fx-background-color: #333856;
+    -fx-background-radius: 5px;
+}
+
+.sort-card{
+    -fx-background-radius: 5px;
+    -fx-text-fill: #fff;
+    -fx-text-font: "Tahoma";
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
 .textfield{
     -fx-border-color: #333856;
     -fx-border-width: 1px;

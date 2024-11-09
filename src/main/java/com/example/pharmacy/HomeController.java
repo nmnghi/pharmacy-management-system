@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.AreaChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -29,6 +30,9 @@ public class HomeController implements Initializable {
     private AnchorPane home_form;
 
     @FXML
+    private AnchorPane dashboard_form;
+
+    @FXML
     private AnchorPane addMedicines_form;
 
     @FXML
@@ -36,6 +40,24 @@ public class HomeController implements Initializable {
 
     @FXML
     private AnchorPane purchase_form;
+
+    @FXML
+    private AreaChart<?, ?> dashboard_chart;
+
+    @FXML
+    private Label dashboard_income;
+
+    @FXML
+    private Button dashboard_week;
+
+    @FXML
+    private Button dashboard_month;
+
+    @FXML
+    private Button dashboard_quarter;
+
+    @FXML
+    private Button dashboard_year;
 
     @FXML
     private TextField addMedicines_medicineID;
