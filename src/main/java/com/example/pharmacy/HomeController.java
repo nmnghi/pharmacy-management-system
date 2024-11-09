@@ -141,6 +141,9 @@ public class HomeController implements Initializable {
     private Button logout;
 
     @FXML
+    private Button dashboard_btn;
+
+    @FXML
     private Button medicines_btn;
 
     @FXML
@@ -695,12 +698,33 @@ public class HomeController implements Initializable {
 
     @FXML
     void switchForm(ActionEvent event) {
+        if(event.getSource() == dashboard_btn){
+            dashboard_form.setVisible(true);
+            addMedicines_form.setVisible(false);
+            home_form.setVisible(false);
+            customer_form.setVisible(false);
+            purchase_form.setVisible(false);
+
+            dashboard_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
+            medicines_btn.setStyle("-fx-background-color: #333856");
+            customer_btn.setStyle("-fx-background-color: #333856;");
+            purchase_btn.setStyle("-fx-background-color: #333856;");
+
+            addMedicineShowListData();
+            addMedicineListCategory();
+            addMedicineListStatus();
+            addMedicineSearch();
+            addMedicineReset();
+        }
+
         if(event.getSource() == medicines_btn){
+            dashboard_form.setVisible(false);
             addMedicines_form.setVisible(true);
             home_form.setVisible(false);
             customer_form.setVisible(false);
             purchase_form.setVisible(false);
 
+            dashboard_btn.setStyle("-fx-background-color: #333856;");
             medicines_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
             customer_btn.setStyle("-fx-background-color: #333856;");
             purchase_btn.setStyle("-fx-background-color: #333856;");
@@ -713,11 +737,13 @@ public class HomeController implements Initializable {
         }
 
         if(event.getSource() == customer_btn){
+            dashboard_form.setVisible(false);
             addMedicines_form.setVisible(false);
             home_form.setVisible(false);
             customer_form.setVisible(true);
             purchase_form.setVisible(false);
 
+            dashboard_btn.setStyle("-fx-background-color: #333856;");
             medicines_btn.setStyle("-fx-background-color: #333856;");
             customer_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
             purchase_btn.setStyle("-fx-background-color: #333856;");
@@ -727,11 +753,13 @@ public class HomeController implements Initializable {
         }
 
         if(event.getSource() == purchase_btn){
+            dashboard_form.setVisible(false);
             addMedicines_form.setVisible(false);
             home_form.setVisible(false);
             customer_form.setVisible(false);
             purchase_form.setVisible(true);
 
+            dashboard_btn.setStyle("-fx-background-color: #333856;");
             medicines_btn.setStyle("-fx-background-color: #333856;");
             customer_btn.setStyle("-fx-background-color: #333856;");
             purchase_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
@@ -804,6 +832,7 @@ public class HomeController implements Initializable {
         addMedicineListCategory();
         addMedicineListStatus();
         home_form.setVisible(true);
+        dashboard_form.setVisible(false);
         addMedicines_form.setVisible(false);
         customer_form.setVisible(false);
         purchase_form.setVisible(false);
