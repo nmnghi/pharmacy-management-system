@@ -42,24 +42,6 @@ public class HomeController implements Initializable {
     private AnchorPane purchase_form;
 
     @FXML
-    private AreaChart<?, ?> dashboard_chart;
-
-    @FXML
-    private Label dashboard_income;
-
-    @FXML
-    private Button dashboard_week;
-
-    @FXML
-    private Button dashboard_month;
-
-    @FXML
-    private Button dashboard_quarter;
-
-    @FXML
-    private Button dashboard_year;
-
-    @FXML
     private TextField addMedicines_medicineID;
 
     @FXML
@@ -142,6 +124,15 @@ public class HomeController implements Initializable {
 
     @FXML
     private Button dashboard_btn;
+
+    @FXML
+    private AreaChart<?, ?> dashboard_chart;
+
+    @FXML
+    private Label dashboard_customer;
+
+    @FXML
+    private Label dashboard_income;
 
     @FXML
     private Button medicines_btn;

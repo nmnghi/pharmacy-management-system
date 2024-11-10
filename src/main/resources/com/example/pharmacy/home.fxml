@@ -108,7 +108,22 @@
                            <children>
                               <AnchorPane layoutX="21.0" layoutY="19.0" prefHeight="163.0" prefWidth="352.0" styleClass="card" stylesheets="@homeDesign.css">
                                  <children>
-                                    <FontAwesomeIcon fill="#c85f77" glyphName="MONEY" layoutX="30.0" layoutY="101.0" size="6em" text="" wrappingWidth="71.14284133911133" />
+                                    <Label alignment="CENTER" layoutX="128.0" layoutY="103.0" prefHeight="46.0" prefWidth="230.0" text="Customers" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="dashboard_customer" alignment="CENTER_RIGHT" layoutX="124.0" layoutY="14.0" prefHeight="30.0" prefWidth="219.0" text="0" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tahoma" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <FontAwesomeIcon fill="#c85f77" glyphName="USER" layoutX="40.0" layoutY="107.0" selectionStart="0" size="6em" text="" wrappingWidth="61.42853927612305" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="415.0" layoutY="19.0" prefHeight="163.0" prefWidth="352.0" styleClass="card" stylesheets="@homeDesign.css">
+                                 <children>
+                                    <FontAwesomeIcon fill="#c85f77" glyphName="MONEY" layoutX="44.0" layoutY="107.0" size="6em" text="" wrappingWidth="71.14284133911133" />
                                     <Label alignment="CENTER" layoutX="128.0" layoutY="103.0" prefHeight="46.0" prefWidth="230.0" text="Total Income" textFill="WHITE">
                                        <font>
                                           <Font name="Tahoma Bold" size="24.0" />
@@ -121,10 +136,6 @@
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <Button fx:id="year_btn" layoutX="598.0" layoutY="111.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="175.0" style="-fx-background-color: #c85f77;" styleClass="sort-card" stylesheets="@homeDesign.css" text="Year" />
-                              <Button fx:id="month_btn" layoutX="598.0" layoutY="51.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="175.0" style="-fx-background-color: #333856;" styleClass="sort-card" stylesheets="@homeDesign.css" text="Month" />
-                              <Button fx:id="week_btn" layoutX="403.0" layoutY="51.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="175.0" style="-fx-background-color: #c85f77;" styleClass="sort-card" stylesheets="@homeDesign.css" text="Week" />
-                              <Button fx:id="quarter_btn" layoutX="403.0" layoutY="111.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="175.0" style="-fx-background-color: #333856;" styleClass="sort-card" stylesheets="@homeDesign.css" text="Quarter" />
                            </children>
                         </AnchorPane>
                         <AnchorPane layoutX="17.0" layoutY="42.0" prefHeight="379.0" prefWidth="793.0" stylesheets="@homeDesign.css">
