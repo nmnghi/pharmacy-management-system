@@ -360,6 +360,12 @@
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>
+                              <FontAwesomeIcon fill="#5b5959" glyphName="SEARCH" layoutX="20.0" layoutY="407.0" size="1.2em" />
+                              <TextField layoutX="14.0" layoutY="386.0" onAction="#customerSearch" onKeyTyped="#addMedicineSearch" prefHeight="33.0" prefWidth="268.0" promptText="Search" styleClass="search" stylesheets="@homeDesign.css">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </TextField>
                               <AnchorPane layoutX="524.0" layoutY="267.0" prefHeight="323.0" prefWidth="273.0">
                                  <styleClass>
                                     <String fx:value="shadow" />
@@ -486,12 +492,6 @@
                            </children>
                         </AnchorPane>
                      </children></AnchorPane>
-                  <TextField layoutX="16.0" layoutY="426.0" onAction="#customerSearch" onKeyTyped="#addMedicineSearch" prefHeight="33.0" prefWidth="268.0" promptText="Search" styleClass="search" stylesheets="@homeDesign.css">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </TextField>
-                  <FontAwesomeIcon fill="#5b5959" glyphName="SEARCH" layoutX="23.0" layoutY="449.0" size="1.2em" />
                     </children>
                 </AnchorPane>
                 <Button layoutX="1061.0" layoutY="7.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@homeDesign.css">
