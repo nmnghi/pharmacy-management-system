@@ -42,6 +42,9 @@ public class HomeController implements Initializable {
     private AnchorPane purchase_form;
 
     @FXML
+    private AnchorPane history_form;
+
+    @FXML
     private TextField addMedicines_medicineID;
 
     @FXML
@@ -117,6 +120,9 @@ public class HomeController implements Initializable {
     private TableColumn<customerData, String> customer_col_points;
 
     @FXML
+    private ComboBox<?> purchase_category;
+
+    @FXML
     private Label username;
 
     @FXML
@@ -142,6 +148,9 @@ public class HomeController implements Initializable {
 
     @FXML
     private Button purchase_btn;
+
+    @FXML
+    private Button add_invoice_btn;
 
     private Connection connect;
     private PreparedStatement prepare;
@@ -709,6 +718,26 @@ public class HomeController implements Initializable {
         }
     }
 
+    public void purchaseCategory(){
+        String sql = "SELECT DISTINCT category FROM medicine WHERE status = 'Available' ";
+
+        connect = database.connectDb();
+
+        try{
+            ObservableList listData = FXCollections.observableArrayList();
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while (result.next()) {
+                listData.add(result.getString("category"));
+            }
+            purchase_category.setItems(listData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     void switchForm(ActionEvent event) {
         if(event.getSource() == dashboard_btn){
@@ -716,6 +745,7 @@ public class HomeController implements Initializable {
             addMedicines_form.setVisible(false);
             home_form.setVisible(false);
             customer_form.setVisible(false);
+            history_form.setVisible(false);
             purchase_form.setVisible(false);
 
             dashboard_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
@@ -736,6 +766,7 @@ public class HomeController implements Initializable {
             addMedicines_form.setVisible(true);
             home_form.setVisible(false);
             customer_form.setVisible(false);
+            history_form.setVisible(false);
             purchase_form.setVisible(false);
 
             dashboard_btn.setStyle("-fx-background-color: #333856;");
@@ -755,6 +786,7 @@ public class HomeController implements Initializable {
             addMedicines_form.setVisible(false);
             home_form.setVisible(false);
             customer_form.setVisible(true);
+            history_form.setVisible(false);
             purchase_form.setVisible(false);
 
             dashboard_btn.setStyle("-fx-background-color: #333856;");
@@ -771,6 +803,23 @@ public class HomeController implements Initializable {
             addMedicines_form.setVisible(false);
             home_form.setVisible(false);
             customer_form.setVisible(false);
+            history_form.setVisible(true);
+            purchase_form.setVisible(false);
+
+            purchaseCategory();
+
+            dashboard_btn.setStyle("-fx-background-color: #333856;");
+            medicines_btn.setStyle("-fx-background-color: #333856;");
+            customer_btn.setStyle("-fx-background-color: #333856;");
+            purchase_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
+        }
+
+        if(event.getSource() == add_invoice_btn){
+            dashboard_form.setVisible(false);
+            addMedicines_form.setVisible(false);
+            home_form.setVisible(false);
+            customer_form.setVisible(false);
+            history_form.setVisible(false);
             purchase_form.setVisible(true);
 
             dashboard_btn.setStyle("-fx-background-color: #333856;");
@@ -842,10 +891,11 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         displayUsername();
+        homeTC();
         addMedicineShowListData();
         addMedicineListCategory();
         addMedicineListStatus();
-        homeTC();
+        purchaseCategory();
         home_form.setVisible(true);
         dashboard_form.setVisible(false);
         addMedicines_form.setVisible(false);
