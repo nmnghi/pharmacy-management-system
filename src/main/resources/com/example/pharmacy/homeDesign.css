@@ -45,9 +45,8 @@
 .sort-card{
     -fx-background-radius: 5px;
     -fx-text-fill: #fff;
-    -fx-text-font: "Tahoma";
+    -fx-text-font: 18px "Tahoma";
     -fx-font-weight: bold;
-    -fx-font-size: 18px;
 }
 
 .textfield{
@@ -95,10 +94,19 @@
 
 .add-btn{
     -fx-background-color: transparent;
-    -fx-border-color: #c85f77;
+    -fx-border-color: #f0483e;
     -fx-border-width: 1px;
     -fx-border-radius: 5px;
     -fx-text-fill: #f0483e;
+    -fx-cursor: hand;
+}
+
+.add-invoice-btn{
+    -fx-background-color: transparent;
+    -fx-border-color: #c85f77;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #c85f77;
     -fx-cursor: hand;
 }
 

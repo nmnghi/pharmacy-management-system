@@ -42,6 +42,9 @@ public class HomeController implements Initializable {
     private AnchorPane purchase_form;
 
     @FXML
+    private AnchorPane history_form;
+
+    @FXML
     private TextField addMedicines_medicineID;
 
     @FXML
@@ -142,6 +145,9 @@ public class HomeController implements Initializable {
 
     @FXML
     private Button purchase_btn;
+
+    @FXML
+    private Button add_invoice_btn;
 
     private Connection connect;
     private PreparedStatement prepare;
@@ -694,6 +700,7 @@ public class HomeController implements Initializable {
             addMedicines_form.setVisible(false);
             home_form.setVisible(false);
             customer_form.setVisible(false);
+            history_form.setVisible(false);
             purchase_form.setVisible(false);
 
             dashboard_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
@@ -713,6 +720,7 @@ public class HomeController implements Initializable {
             addMedicines_form.setVisible(true);
             home_form.setVisible(false);
             customer_form.setVisible(false);
+            history_form.setVisible(false);
             purchase_form.setVisible(false);
 
             dashboard_btn.setStyle("-fx-background-color: #333856;");
@@ -732,6 +740,7 @@ public class HomeController implements Initializable {
             addMedicines_form.setVisible(false);
             home_form.setVisible(false);
             customer_form.setVisible(true);
+            history_form.setVisible(false);
             purchase_form.setVisible(false);
 
             dashboard_btn.setStyle("-fx-background-color: #333856;");
@@ -748,6 +757,21 @@ public class HomeController implements Initializable {
             addMedicines_form.setVisible(false);
             home_form.setVisible(false);
             customer_form.setVisible(false);
+            history_form.setVisible(true);
+            purchase_form.setVisible(false);
+
+            dashboard_btn.setStyle("-fx-background-color: #333856;");
+            medicines_btn.setStyle("-fx-background-color: #333856;");
+            customer_btn.setStyle("-fx-background-color: #333856;");
+            purchase_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
+        }
+
+        if(event.getSource() == add_invoice_btn){
+            dashboard_form.setVisible(false);
+            addMedicines_form.setVisible(false);
+            home_form.setVisible(false);
+            customer_form.setVisible(false);
+            history_form.setVisible(false);
             purchase_form.setVisible(true);
 
             dashboard_btn.setStyle("-fx-background-color: #333856;");
