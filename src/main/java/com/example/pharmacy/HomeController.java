@@ -120,6 +120,9 @@ public class HomeController implements Initializable {
     private TableColumn<customerData, String> customer_col_points;
 
     @FXML
+    private ComboBox<?> purchase_category;
+
+    @FXML
     private Label username;
 
     @FXML
@@ -693,6 +696,26 @@ public class HomeController implements Initializable {
         }
     }
 
+    public void purchaseCategory(){
+        String sql = "SELECT DISTINCT category FROM medicine WHERE status = 'Available' ";
+
+        connect = database.connectDb();
+
+        try{
+            ObservableList listData = FXCollections.observableArrayList();
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while (result.next()) {
+                listData.add(result.getString("category"));
+            }
+            purchase_category.setItems(listData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     void switchForm(ActionEvent event) {
         if(event.getSource() == dashboard_btn){
@@ -759,6 +782,8 @@ public class HomeController implements Initializable {
             customer_form.setVisible(false);
             history_form.setVisible(true);
             purchase_form.setVisible(false);
+
+            purchaseCategory();
 
             dashboard_btn.setStyle("-fx-background-color: #333856;");
             medicines_btn.setStyle("-fx-background-color: #333856;");
@@ -846,11 +871,14 @@ public class HomeController implements Initializable {
         addMedicineShowListData();
         addMedicineListCategory();
         addMedicineListStatus();
+
+        purchaseCategory();
         home_form.setVisible(true);
         dashboard_form.setVisible(false);
         addMedicines_form.setVisible(false);
         customer_form.setVisible(false);
         purchase_form.setVisible(false);
+
 
         customerShowListData();
     }
