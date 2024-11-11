@@ -151,6 +151,28 @@ public class HomeController implements Initializable {
     private double x = 0;
     private double y = 0;
 
+    public void homeTC(){
+        String sql = "SELECT COUNT(id) FROM Customer";
+
+        connect = database.connectDb();
+
+        int countTC = 0;
+
+        try{
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while(result.next()){
+                countTC = result.getInt("COUNT(id)");
+            }
+
+            dashboard_customer.setText(String.valueOf(countTC));
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     void addMedicineAdd() {
         String sql = "INSERT INTO medicine (medicine_id, productName, category, quantity, price, status) "
@@ -706,6 +728,7 @@ public class HomeController implements Initializable {
             addMedicineListStatus();
             addMedicineSearch();
             addMedicineReset();
+            homeTC();
         }
 
         if(event.getSource() == medicines_btn){
@@ -822,6 +845,7 @@ public class HomeController implements Initializable {
         addMedicineShowListData();
         addMedicineListCategory();
         addMedicineListStatus();
+        homeTC();
         home_form.setVisible(true);
         dashboard_form.setVisible(false);
         addMedicines_form.setVisible(false);
