@@ -795,7 +795,8 @@ public class HomeController implements Initializable {
             purchase_btn.setStyle("-fx-background-color: #333856;");
 
             customerShowListData();
-//            customerSearch();
+            customerSearch();
+            customerReset();
         }
 
         if(event.getSource() == purchase_btn){

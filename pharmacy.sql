@@ -9,11 +9,11 @@ create table Admin(
 
 insert into Admin(username, password) VALUES ('admin', '123456');
 
-CREATE TABLE Customer (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    fullName VARCHAR(255) NOT NULL,
-    phoneNum VARCHAR(20) NOT NULL,
-    registrationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+create table Customer (
+    id int auto_increment primary key,
+    fullName varchar(100) not null,
+    phoneNum varchar(20) not null,
+    registrationDate timestamp default current_timestamp,
     -- total DOUBLE DEFAULT 0.00,
     loyaltyPoints INT DEFAULT 0
 );
@@ -24,11 +24,9 @@ create table medicine(
     productName varchar(100) not null,
     category varchar(100) not null,
     quantity int not null,
-    price varchar(100) not null,
+    price int not null,
     status varchar(100) not null
 );
-
-drop table Customer;
 
 select * from Admin;
 select * from Customer;
