@@ -447,20 +447,14 @@
                                     <String fx:value="white-bg" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="16.0" layoutY="52.0" text="Category:">
+                                    <Label layoutX="16.0" layoutY="98.0" text="Category:">
                                        <font>
                                           <Font name="Tahoma" size="16.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="purchase_category" layoutX="115.0" layoutY="47.0" onAction="#purchaseCategory" prefWidth="150.0" promptText="Choose..." />
-                                    <ComboBox fx:id="purchase_productName" layoutX="115.0" layoutY="138.0" prefWidth="150.0" promptText="Choose..." />
-                                    <ComboBox fx:id="purchase_medicineID" layoutX="115.0" layoutY="92.0" prefWidth="150.0" promptText="Choose..." />
-                                    <Label layoutX="16.0" layoutY="100.0" text="Medicine ID:">
-                                       <font>
-                                          <Font name="Tahoma" size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="16.0" layoutY="143.0" text="Product:">
+                                    <ComboBox fx:id="purchase_category" layoutX="111.0" layoutY="96.0" onAction="#purchaseCategory" prefHeight="26.0" prefWidth="154.0" promptText="Choose..." />
+                                    <ComboBox fx:id="purchase_productName" layoutX="111.0" layoutY="140.0" prefHeight="26.0" prefWidth="154.0" promptText="Choose..." />
+                                    <Label layoutX="16.0" layoutY="142.0" text="Product:">
                                        <font>
                                           <Font name="Tahoma" size="16.0" />
                                        </font>
@@ -473,6 +467,12 @@
                                     <Label layoutX="16.0" layoutY="9.0" text="Cart">
                                        <font>
                                           <Font name="System Bold" size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="110.0" layoutY="53.0" prefHeight="26.0" prefWidth="154.0" />
+                                    <Label layoutX="20.0" layoutY="56.0" text="Staff:">
+                                       <font>
+                                          <Font name="Tahoma" size="16.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -517,15 +517,15 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                              <Button fx:id="add_invoice_btn" graphicTextGap="12.0" layoutX="397.0" layoutY="15.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="123.0" scaleShape="false" styleClass="add-btn" stylesheets="@homeDesign.css" text="Add New">
+                              <Button fx:id="add_invoice_btn" graphicTextGap="12.0" layoutX="397.0" layoutY="15.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="40.0" prefWidth="123.0" scaleShape="false" styleClass="add-invoice-btn" stylesheets="@homeDesign.css" text="Add New">
                                  <font>
                                     <Font name="Tahoma" size="14.0" />
                                  </font>
                                  <graphic>
-                                    <FontAwesomeIcon fill="#f0483e" glyphName="PLUS" size="1.5em" text="" />
+                                    <FontAwesomeIcon fill="#c85f77" glyphName="PLUS" size="1.5em" text="" />
                                  </graphic>
                               </Button>
-                              <Button graphicTextGap="12.0" layoutX="533.0" layoutY="15.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="123.0" styleClass="delete-btn" stylesheets="@homeDesign.css" text="Delete">
+                              <Button graphicTextGap="12.0" layoutX="533.0" layoutY="15.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="123.0" styleClass="update-btn" stylesheets="@homeDesign.css" text="Delete">
                                  <font>
                                     <Font name="Tahoma" size="14.0" />
                                  </font>
