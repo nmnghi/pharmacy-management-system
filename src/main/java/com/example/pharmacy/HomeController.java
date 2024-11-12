@@ -150,6 +150,9 @@ public class HomeController implements Initializable {
     private Button purchase_btn;
 
     @FXML
+    private ComboBox<?> purchase_productName;
+
+    @FXML
     private Button add_invoice_btn;
 
     private Connection connect;
@@ -733,6 +736,32 @@ public class HomeController implements Initializable {
                 listData.add(result.getString("category"));
             }
             purchase_category.setItems(listData);
+
+            if (!listData.isEmpty()) {
+                purchaseProductName();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void purchaseProductName(){
+        String sql = "SELECT * FROM medicine WHERE category ='"
+                +purchase_category.getSelectionModel().getSelectedItem()+"'";
+
+        connect = database.connectDb();
+
+        try{
+            ObservableList listData = FXCollections.observableArrayList();
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while (result.next()) {
+                listData.add(result.getString("productName"));
+            }
+
+            purchase_productName.setItems(listData);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -895,7 +924,10 @@ public class HomeController implements Initializable {
         addMedicineShowListData();
         addMedicineListCategory();
         addMedicineListStatus();
+
         purchaseCategory();
+        purchaseProductName();
+
         home_form.setVisible(true);
         dashboard_form.setVisible(false);
         addMedicines_form.setVisible(false);
