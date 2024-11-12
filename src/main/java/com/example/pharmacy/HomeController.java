@@ -122,6 +122,7 @@ public class HomeController implements Initializable {
     @FXML
     private ComboBox<?> purchase_category;
 
+
     @FXML
     private Label username;
 
@@ -766,6 +767,7 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
     }
+
 
     @FXML
     void switchForm(ActionEvent event) {
