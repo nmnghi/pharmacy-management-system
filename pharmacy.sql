@@ -28,6 +28,29 @@ create table medicine(
     status varchar(100) not null
 );
 
+create table purchase(
+    id int auto_increment primary key,
+    customer_id int not null,
+    medicine_id varchar(100) not null,
+    productName varchar(100) not null,
+    category varchar(100) not null,
+    quantity int not null,
+    price int not null
+);
+
+create table history(
+    id int auto_increment primary key,
+    customer_id int not null,
+    customerName varchar(100) not null,
+    staffName varchar(100) not null,
+    total int not null,
+    createdDate Date not null
+);
+
 select * from Admin;
 select * from Customer;
 select * from medicine;
+select * from purchase;
+select * from history;
+
+SET SQL_SAFE_UPDATES = 0; /*Chay cai nay trong MySql truoc roi moi chay app*/

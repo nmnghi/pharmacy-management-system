@@ -2,8 +2,6 @@ package com.example.pharmacy;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -21,6 +20,7 @@ import javafx.stage.StageStyle;
 import java.net.URL;
 import java.util.*;
 import java.sql.*;
+import java.util.Date;
 
 public class HomeController implements Initializable {
     @FXML
@@ -105,19 +105,55 @@ public class HomeController implements Initializable {
     private TableView<customerData> customer_tableView;
 
     @FXML
+    private TableView<historyData> history_tableView;
+
+    @FXML
+    private TableColumn<historyData, String> history_col_cusName;
+
+    @FXML
+    private TableColumn<historyData, String> history_col_date;
+
+    @FXML
+    private TableColumn<historyData, String> history_col_id;
+
+    @FXML
+    private TableColumn<historyData, String> history_col_staffName;
+
+    @FXML
+    private TableColumn<historyData, String> history_col_total;
+
+    @FXML
+    private TableView<customerData> customer_tableView1;
+
+    @FXML
     private TableColumn<customerData, String> customer_col_date;
+
+    @FXML
+    private TableColumn<customerData, String> customer_col_date1;
 
     @FXML
     private TableColumn<customerData, String> customer_col_fullName;
 
     @FXML
+    private TableColumn<customerData, String> customer_col_fullName1;
+
+    @FXML
     private TableColumn<customerData, String> customer_col_id;
+
+    @FXML
+    private TableColumn<customerData, String> customer_col_id1;
 
     @FXML
     private TableColumn<customerData, String> customer_col_phoneNumber;
 
     @FXML
+    private TableColumn<customerData, String> customer_col_phoneNumber1;
+
+    @FXML
     private TableColumn<customerData, String> customer_col_points;
+
+    @FXML
+    private TableColumn<customerData, String> customer_col_points1;
 
     @FXML
     private Label username;
@@ -147,6 +183,9 @@ public class HomeController implements Initializable {
     private Button purchase_btn;
 
     @FXML
+    private TextField staffName;
+
+    @FXML
     private ComboBox<?> purchase_medID;
 
     @FXML
@@ -157,6 +196,18 @@ public class HomeController implements Initializable {
 
     @FXML
     private TextField purchase_quantity;
+
+    @FXML
+    private Label purchase_items;
+
+    @FXML
+    private CheckBox checkDiscount;
+
+    @FXML
+    private Label purchase_discount;
+
+    @FXML
+    private Label purchase_total;
 
     @FXML
     private TableView<purchaseData> purchase_tableView;
@@ -184,6 +235,30 @@ public class HomeController implements Initializable {
     private double x = 0;
     private double y = 0;
 
+    public void homeChart(){
+        dashboard_chart.getData().clear();
+
+        String sql = "SELECT createdDate, SUM(total) FROM history"
+                + " GROUP BY createdDate ORDER BY TIMESTAMP(createdDate) ASC LIMIT 9";
+
+        connect = database.connectDb();
+
+        try{
+            XYChart.Series chart = new XYChart.Series();
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while(result.next()){
+                chart.getData().add(new XYChart.Data(result.getString(1), result.getInt(2)));
+            }
+
+            dashboard_chart.getData().add(chart);
+
+        }catch(Exception e){e.printStackTrace();}
+
+    }
+
     public void homeTC(){
         String sql = "SELECT COUNT(id) FROM Customer";
 
@@ -202,6 +277,26 @@ public class HomeController implements Initializable {
             dashboard_customer.setText(String.valueOf(countTC));
 
         }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void homeTI(){
+        String sql = "SELECT SUM(total) FROM history";
+
+        connect = database.connectDb();
+        int totalDisplay = 0;
+        try{
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while(result.next()){
+                totalDisplay = result.getInt("SUM(total)");
+            }
+
+            dashboard_income.setText(String.valueOf(totalDisplay) + " VND");
+
+        }catch(Exception e){
             e.printStackTrace();
         }
     }
@@ -829,7 +924,8 @@ public class HomeController implements Initializable {
 
             purchaseData purData;
             while (result.next()) {
-                purData = new purchaseData(result.getString("medicine_id")
+                purData = new purchaseData(result.getInt("customer_id")
+                        , result.getString("medicine_id")
                         , result.getString("productName")
                         , result.getString("category")
                         , result.getInt("quantity")
@@ -857,11 +953,146 @@ public class HomeController implements Initializable {
 
     }
 
+    public ObservableList<customerData> customerListData1() {
+        String sql = "SELECT * FROM Customer";
+
+        ObservableList<customerData> listData1 = FXCollections.observableArrayList();
+
+        connect = database.connectDb();
+
+        try{
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            customerData cusData1;
+            while (result.next()) {
+                cusData1 = new customerData(
+                        result.getInt("id"),
+                        result.getString("fullName"),
+                        result.getString("phoneNum"),
+                        result.getDate("registrationDate"),
+//                        result.getDouble("total"),
+                        result.getInt("loyaltyPoints")
+                );
+
+                listData1.add(cusData1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listData1;
+    }
+
+    private ObservableList<customerData> customerList1;
+    public void customerShowListData1(){
+        customerList1 = customerListData1();
+
+        customer_col_id1.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        customer_col_fullName1.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        customer_col_phoneNumber1.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        customer_col_date1.setCellValueFactory(new PropertyValueFactory<>("registrationDate"));
+        customer_col_points1.setCellValueFactory(new PropertyValueFactory<>("loyaltyPoints"));
+
+        customer_tableView1.setItems(customerList1);
+    }
+
+    public ObservableList<historyData> historyListData(){
+        String sql = "SELECT * FROM history";
+        ObservableList<historyData> listData = FXCollections.observableArrayList();
+        connect = database.connectDb();
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+            historyData hisData;
+            while (result.next()) {
+                hisData = new historyData(result.getInt("id")
+                        , result.getInt("customer_id")
+                        , result.getString("customerName")
+                        , result.getString("staffName")
+                        , result.getInt("total")
+                        , result.getDate("createdDate")
+                );
+                listData.add(hisData);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return listData;
+    }
+
+    private ObservableList<historyData> historyList;
+    public void historyShowListData(){
+        historyList = historyListData();
+
+        history_col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        history_col_cusName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        history_col_staffName.setCellValueFactory(new PropertyValueFactory<>("staffName"));
+        history_col_total.setCellValueFactory(new PropertyValueFactory<>("total"));
+        history_col_date.setCellValueFactory(new PropertyValueFactory<>("createdDate"));
+
+        history_tableView.setItems(historyList);
+    }
+
+    private int historyId;
+    public void historySelect(){
+        historyData hisData = history_tableView.getSelectionModel().getSelectedItem();
+        int num = history_tableView.getSelectionModel().getSelectedIndex();
+
+        if ((num - 1) < - 1) {
+            return;
+        }
+
+        historyId = hisData.getId();
+    }
+    
+    public void historyDelete(){
+        String sql = "DELETE FROM history WHERE id = ?";
+        connect = database.connectDb();
+
+        try{
+            Alert alert;
+            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation message");
+            alert.setHeaderText(null);
+            alert.setContentText("Are you sure to delete this record?");
+
+            Optional<ButtonType> option = alert.showAndWait();
+            if(option.get() == ButtonType.OK){
+                prepare = connect.prepareStatement(sql);
+                prepare.setInt(1, historyId);
+                prepare.executeUpdate();
+
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information message");
+                alert.setHeaderText(null);
+                alert.setContentText("Successfully deleted");
+                alert.showAndWait();
+
+                historyShowListData();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private int customerId;
+    public void purchaseCustomerId(){
+        customerData cusData = customer_tableView1.getSelectionModel().getSelectedItem();
+        int num = customer_tableView1.getSelectionModel().getSelectedIndex();
+
+        if( (num-1) < -1) return;
+
+        customerId = cusData.getCustomerId();
+    }
+
     private int totalP;
     public void purchaseAdd(){
+        purchaseCustomerId();
 
-        String sql = "INSERT INTO purchase (medicine_id, productName, category, quantity, price)"
-                + " VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO purchase (customer_id, medicine_id, productName, category, quantity, price)"
+                + " VALUES(?,?,?,?,?,?)";
 
         connect = database.connectDb();
 
@@ -879,45 +1110,250 @@ public class HomeController implements Initializable {
                 alert.showAndWait();
             }else{
 
-                prepare = connect.prepareStatement(sql);
-                prepare.setString(1, (String)purchase_medID.getSelectionModel().getSelectedItem());
-                prepare.setString(2, (String)purchase_productName.getSelectionModel().getSelectedItem());
-                prepare.setString(3, (String)purchase_category.getSelectionModel().getSelectedItem());
-
                 int quantity = Integer.parseInt(purchase_quantity.getText());
-                prepare.setInt(4, quantity);
 
-
-                String checkData = "SELECT price FROM medicine WHERE medicine_id = '"
-                        +purchase_medID.getSelectionModel().getSelectedItem()+"'";
+                String checkStock = "SELECT quantity FROM medicine WHERE medicine_id = '"
+                        + purchase_medID.getSelectionModel().getSelectedItem() + "'";
 
                 statement = connect.createStatement();
-                result = statement.executeQuery(checkData);
-                int priceD = 0;
+                result = statement.executeQuery(checkStock);
+                int stockQuantity = 0;
                 if(result.next()){
-                    priceD = result.getInt("price");
+                    stockQuantity = result.getInt("quantity");
                 }
 
-                totalP = priceD * quantity;
+                if (quantity > stockQuantity) {
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Not enough stock available. Current stock: " + stockQuantity);
+                    alert.showAndWait();
+                } else {
+                    prepare = connect.prepareStatement(sql);
+                    prepare.setInt(1, customerId);
+                    prepare.setString(2, (String)purchase_medID.getSelectionModel().getSelectedItem());
+                    prepare.setString(3, (String)purchase_productName.getSelectionModel().getSelectedItem());
+                    prepare.setString(4, (String)purchase_category.getSelectionModel().getSelectedItem());
+                    prepare.setInt(5, quantity);
 
-                prepare.setInt(5, totalP);
+                    String checkData = "SELECT price FROM medicine WHERE medicine_id = '"
+                            +purchase_medID.getSelectionModel().getSelectedItem()+"'";
 
-                prepare.executeUpdate();
+                    result = statement.executeQuery(checkData);
+                    int priceD = 0;
+                    if(result.next()){
+                        priceD = result.getInt("price");
+                    }
 
-                purchaseShowListData();
+                    totalP = priceD * quantity;
+
+                    prepare.setInt(6, totalP);
+
+                    prepare.executeUpdate();
+
+                    purchaseShowListData();
+                    totalItems();
+                    if (checkDiscount.isSelected()){
+                        purchaseDiscount();
+                    }else{
+                        discount = 0;
+                        purchase_discount.setText("0 VND");
+                    }
+                    calculateFinalPrice();
+                }
             }
-
-            prepare = connect.prepareStatement(sql);
         }catch(Exception e){
             e.printStackTrace();
         }
     }
 
+    private int totalItems;
+    private void totalItems(){
+        String sql = "SELECT SUM(price) FROM purchase WHERE customer_id = '"+customerId+"'";
+        connect = database.connectDb();
+
+        try{
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if(result.next()){
+                totalItems = result.getInt("SUM(price)");
+            }
+            purchase_items.setText(String.valueOf(totalItems) + " VND");
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private int discount;
+    public void purchaseDiscount(){
+        String sql = "SELECT loyaltyPoints FROM customer WHERE id = '"+customerId+"'";
+        connect = database.connectDb();
+
+        try{
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if(result.next()){
+                discount = result.getInt("loyaltyPoints") * 1000;
+            }
+            purchase_discount.setText(String.valueOf(discount) + " VND");
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private int finalPrice;
+    public void calculateFinalPrice() {
+        finalPrice = totalItems - discount;
+        if (finalPrice < 0) {
+            finalPrice = 0;
+        }
+        purchase_total.setText(String.valueOf(finalPrice) + " VND");
+    }
+
+    public void purchasePay(){
+        String sql = "INSERT INTO history (customer_id, customerName, staffName, total, createdDate) "
+                + "VALUES(?,?,?,?,?)";
+
+        String sql1 = "SELECT fullName FROM customer WHERE id = ?";
+
+        connect = database.connectDb();
+
+        try{
+            Alert alert;
+
+            if(finalPrice == 0){
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Something wrong :3");
+                alert.showAndWait();
+            }else{
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("Are you sure?");
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if(option.get().equals(ButtonType.OK)){
+                    prepare = connect.prepareStatement(sql1);
+                    prepare.setInt(1, customerId);
+                    result = prepare.executeQuery();
+
+                    String name = null;
+                    if (result.next()) {
+                        name = result.getString("fullName");
+                    }
+
+                    prepare = connect.prepareStatement(sql);
+                    prepare.setInt(1, customerId);
+                    prepare.setString(2, name);
+
+                    String staffName = this.staffName.getText();
+                    prepare.setString(3, staffName);
+                    prepare.setInt(4, finalPrice);
+
+                    Date date = new Date();
+                    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                    prepare.setString(5, String.valueOf(sqlDate));
+
+                    prepare.executeUpdate();
+
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successful!");
+                    alert.showAndWait();
+
+                    purchaseUpdateQuantity();
+                    transferToLoyaltyPoints();
+                    purchaseReset();
+                }
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void transferToLoyaltyPoints() {
+        int pointsToAdd = finalPrice / 100000;
+        int updatedLoyaltyPoints = pointsToAdd - discount/1000;
+
+        String updatePointsSQL = "UPDATE customer SET loyaltyPoints = loyaltyPoints + ? WHERE id = ?";
+        connect = database.connectDb();
+
+        try {
+            prepare = connect.prepareStatement(updatePointsSQL);
+            prepare.setInt(1, updatedLoyaltyPoints); // Adjust loyalty points
+            prepare.setInt(2, customerId);
+            prepare.executeUpdate();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Loyalty points updated successfully!");
+            alert.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void purchaseUpdateQuantity() {
+        String sql = "UPDATE medicine SET quantity = quantity - ? WHERE medicine_id = ?";
+
+        connect = database.connectDb();
+
+        try {
+            prepare = connect.prepareStatement(sql);
+
+            for (purchaseData purchase : purchaseList) {
+                prepare.setInt(1, purchase.getQuantity());
+                prepare.setString(2, purchase.getMedicine_id());
+                prepare.executeUpdate();
+            }
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Quantity of drugs updated successfully!");
+            alert.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void purchaseReset(){
-        purchase_category.getSelectionModel().clearSelection();
-        purchase_productName.getSelectionModel().clearSelection();
-        purchase_medID.getSelectionModel().clearSelection();
-        purchase_quantity.setText("");
+        String sql = "DELETE FROM purchase WHERE customer_id = '"+customerId+"'";
+        connect = database.connectDb();
+
+        try {
+            prepare = connect.prepareStatement(sql);
+            int rowsDeleted = prepare.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Ready for a new bill.");
+                alert.showAndWait();
+            }
+
+            // Refresh the UI to reflect the cleared data
+            staffName.setText("");
+            purchase_medID.getSelectionModel().clearSelection();
+            purchase_category.getSelectionModel().clearSelection();
+            purchase_productName.getSelectionModel().clearSelection();
+            purchase_quantity.setText("");
+            purchase_items.setText("0 VND");
+            purchase_discount.setText("0 VND");
+            purchase_total.setText("0 VND");
+            purchaseShowListData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -935,7 +1371,9 @@ public class HomeController implements Initializable {
             customer_btn.setStyle("-fx-background-color: #333856;");
             purchase_btn.setStyle("-fx-background-color: #333856;");
 
+            homeChart();
             homeTC();
+            homeTI();
         }
 
         if(event.getSource() == medicines_btn){
@@ -989,6 +1427,8 @@ public class HomeController implements Initializable {
             customer_btn.setStyle("-fx-background-color: #333856;");
             purchase_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
 
+            historyShowListData();
+            purchaseReset();
         }
 
         if(event.getSource() == add_invoice_btn){
@@ -1004,8 +1444,8 @@ public class HomeController implements Initializable {
             customer_btn.setStyle("-fx-background-color: #333856;");
             purchase_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
 
+            customerShowListData1();
             purchaseShowListData();
-            purchaseReset();
             purchaseCategory();
             purchaseProductName();
             purchaseMedicineId();
@@ -1075,13 +1515,18 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         displayUsername();
 
+        homeChart();
         homeTC();
+        homeTI();
 
         addMedicineShowListData();
         addMedicineListCategory();
         addMedicineListStatus();
 
+        historyShowListData();
+
         customerShowListData();
+        customerShowListData1();
 
         purchaseShowListData();
         purchaseCategory();
