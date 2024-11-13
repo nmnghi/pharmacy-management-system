@@ -258,7 +258,7 @@
                                 </AnchorPane>
                             </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="customer_form" layoutX="35.0" layoutY="23.0" prefHeight="650.0" prefWidth="828.0" styleClass="right-form" stylesheets="@homeDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="customer_form" layoutX="35.0" layoutY="23.0" prefHeight="650.0" prefWidth="828.0" styleClass="right-form" stylesheets="@homeDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane layoutX="17.0" layoutY="45.0" prefHeight="209.0" prefWidth="793.0" stylesheets="@homeDesign.css">
                            <styleClass>
@@ -332,7 +332,7 @@
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>
-                              <TextField fx:id="customer_search" layoutX="14.0" layoutY="14.0" onAction="#customerSearch" onKeyTyped="#addMedicineSearch" prefHeight="33.0" prefWidth="268.0" promptText="Search" styleClass="search" stylesheets="@homeDesign.css">
+                              <TextField fx:id="customer_search" layoutX="14.0" layoutY="14.0" onKeyTyped="#customerSearch" prefHeight="33.0" prefWidth="268.0" promptText="Search" styleClass="search" stylesheets="@homeDesign.css">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
@@ -353,7 +353,7 @@
                            </children>
                         </AnchorPane>
                      </children></AnchorPane>
-                  <AnchorPane fx:id="history_form" prefHeight="650.0" prefWidth="828.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="history_form" prefHeight="650.0" prefWidth="828.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane layoutX="11.0" layoutY="40.0" prefHeight="597.0" prefWidth="805.0" stylesheets="@homeDesign.css">
                            <styleClass>
@@ -407,7 +407,7 @@
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                        <AnchorPane fx:id="purchase_form" layoutX="226.0" layoutY="81.0" prefHeight="650.0" prefWidth="828.0" styleClass="right-form" stylesheets="@homeDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="purchase_form" layoutX="226.0" layoutY="81.0" prefHeight="650.0" prefWidth="828.0" styleClass="right-form" stylesheets="@homeDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane layoutX="11.0" layoutY="40.0" prefHeight="597.0" prefWidth="805.0" stylesheets="@homeDesign.css">
                            <styleClass>
@@ -416,7 +416,7 @@
                            </styleClass>
                            <children>
                               <FontAwesomeIcon fill="#5b5959" glyphName="SEARCH" layoutX="20.0" layoutY="407.0" size="1.2em" x="-8.0" />
-                              <TextField layoutX="5.0" layoutY="386.0" onAction="#customerSearch" onKeyTyped="#addMedicineSearch" prefHeight="33.0" prefWidth="268.0" promptText="Search" styleClass="search" stylesheets="@homeDesign.css">
+                              <TextField fx:id="customer_search1" layoutX="5.0" layoutY="386.0" onKeyTyped="#customerSearch1" prefHeight="33.0" prefWidth="268.0" promptText="Search" styleClass="search" stylesheets="@homeDesign.css">
                                  <font>
                                     <Font size="13.0" />
                                  </font>

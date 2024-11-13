@@ -102,6 +102,9 @@ public class HomeController implements Initializable {
     private TextField customer_search;
 
     @FXML
+    private TextField customer_search1;
+
+    @FXML
     private TableView<customerData> customer_tableView;
 
     @FXML
@@ -837,6 +840,43 @@ public class HomeController implements Initializable {
         }
     }
 
+    public void customerSearch1(){
+        String sql = "SELECT * FROM Customer WHERE fullName LIKE ? or phoneNum LIKE ?";
+
+        connect = database.connectDb();
+
+        try {
+            prepare = connect.prepareStatement(sql);
+
+            prepare.setString(1, "%" + customer_search1.getText() + "%");
+            prepare.setString(2, "%" + customer_search1.getText() + "%");
+
+            result = prepare.executeQuery();
+
+            ObservableList<customerData> listData = FXCollections.observableArrayList();
+
+            customerData cusData;
+
+            while (result.next()) {
+                cusData = new customerData(
+                        result.getInt("id"),
+                        result.getString("fullName"),
+                        result.getString("phoneNum"),
+                        result.getDate("registrationDate"),
+                        result.getInt("loyaltyPoints")
+                );
+
+
+                listData.add(cusData);
+            }
+
+            customer_tableView1.setItems(listData);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void purchaseCategory(){
         String sql = "SELECT DISTINCT category FROM medicine WHERE status = 'Available' ";
 
@@ -1449,6 +1489,7 @@ public class HomeController implements Initializable {
             purchaseCategory();
             purchaseProductName();
             purchaseMedicineId();
+            customerSearch1();
         }
     }
 
