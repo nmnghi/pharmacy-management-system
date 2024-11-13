@@ -120,10 +120,6 @@ public class HomeController implements Initializable {
     private TableColumn<customerData, String> customer_col_points;
 
     @FXML
-    private ComboBox<?> purchase_category;
-
-
-    @FXML
     private Label username;
 
     @FXML
@@ -151,7 +147,31 @@ public class HomeController implements Initializable {
     private Button purchase_btn;
 
     @FXML
+    private ComboBox<?> purchase_medID;
+
+    @FXML
     private ComboBox<?> purchase_productName;
+
+    @FXML
+    private ComboBox<?> purchase_category;
+
+    @FXML
+    private TextField purchase_quantity;
+
+    @FXML
+    private TableView<purchaseData> purchase_tableView;
+
+    @FXML
+    private TableColumn<purchaseData, String> purchase_col_category;
+
+    @FXML
+    private TableColumn<purchaseData, String> purchase_col_price;
+
+    @FXML
+    private TableColumn<purchaseData, String> purchase_col_productName;
+
+    @FXML
+    private TableColumn<purchaseData, String> purchase_col_quantity;
 
     @FXML
     private Button add_invoice_btn;
@@ -736,18 +756,19 @@ public class HomeController implements Initializable {
             while (result.next()) {
                 listData.add(result.getString("category"));
             }
+
             purchase_category.setItems(listData);
 
-            if (!listData.isEmpty()) {
-                purchaseProductName();
-            }
+            purchaseProductName();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void purchaseProductName(){
-        String sql = "SELECT * FROM medicine WHERE category ='"
+
+        String sql = "SELECT * FROM medicine WHERE category = '"
                 +purchase_category.getSelectionModel().getSelectedItem()+"'";
 
         connect = database.connectDb();
@@ -763,11 +784,141 @@ public class HomeController implements Initializable {
             }
 
             purchase_productName.setItems(listData);
+
+            purchaseMedicineId();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public void purchaseMedicineId(){
+
+        String sql = "SELECT * FROM medicine WHERE productName = '"
+                +purchase_productName.getSelectionModel().getSelectedItem()+"'";
+
+        connect = database.connectDb();
+
+        try{
+            ObservableList listData = FXCollections.observableArrayList();
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            while(result.next()){
+                listData.add(result.getString("medicine_id"));
+            }
+
+            purchase_medID.setItems(listData);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public ObservableList<purchaseData> purchaseListData(){
+
+        String sql = "SELECT * FROM purchase";
+
+        ObservableList<purchaseData> listData = FXCollections.observableArrayList();
+        connect = database.connectDb();
+
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            purchaseData purData;
+            while (result.next()) {
+                purData = new purchaseData(result.getString("medicine_id")
+                        , result.getString("productName")
+                        , result.getString("category")
+                        , result.getInt("quantity")
+                        , result.getInt("price"));
+
+                listData.add(purData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listData;
+    }
+
+    private ObservableList<purchaseData> purchaseList;
+
+    public void purchaseShowListData(){
+        purchaseList = purchaseListData();
+
+        purchase_col_productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        purchase_col_category.setCellValueFactory(new PropertyValueFactory<>("category"));
+        purchase_col_quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        purchase_col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        purchase_tableView.setItems(purchaseList);
+
+    }
+
+    private int totalP;
+    public void purchaseAdd(){
+
+        String sql = "INSERT INTO purchase (medicine_id, productName, category, quantity, price)"
+                + " VALUES(?,?,?,?,?)";
+
+        connect = database.connectDb();
+
+        try{
+            Alert alert;
+
+            if(purchase_category.getSelectionModel().getSelectedItem() == null ||
+                    purchase_productName.getSelectionModel().getSelectedItem() == null ||
+                    purchase_medID.getSelectionModel().getSelectedItem() == null ||
+                    purchase_quantity.getText().isEmpty()){
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all blank fields");
+                alert.showAndWait();
+            }else{
+
+                prepare = connect.prepareStatement(sql);
+                prepare.setString(1, (String)purchase_medID.getSelectionModel().getSelectedItem());
+                prepare.setString(2, (String)purchase_productName.getSelectionModel().getSelectedItem());
+                prepare.setString(3, (String)purchase_category.getSelectionModel().getSelectedItem());
+
+                int quantity = Integer.parseInt(purchase_quantity.getText());
+                prepare.setInt(4, quantity);
+
+
+                String checkData = "SELECT price FROM medicine WHERE medicine_id = '"
+                        +purchase_medID.getSelectionModel().getSelectedItem()+"'";
+
+                statement = connect.createStatement();
+                result = statement.executeQuery(checkData);
+                int priceD = 0;
+                if(result.next()){
+                    priceD = result.getInt("price");
+                }
+
+                totalP = priceD * quantity;
+
+                prepare.setInt(5, totalP);
+
+                prepare.executeUpdate();
+
+                purchaseShowListData();
+            }
+
+            prepare = connect.prepareStatement(sql);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void purchaseReset(){
+        purchase_category.getSelectionModel().clearSelection();
+        purchase_productName.getSelectionModel().clearSelection();
+        purchase_medID.getSelectionModel().clearSelection();
+        purchase_quantity.setText("");
+    }
 
     @FXML
     void switchForm(ActionEvent event) {
@@ -784,11 +935,6 @@ public class HomeController implements Initializable {
             customer_btn.setStyle("-fx-background-color: #333856;");
             purchase_btn.setStyle("-fx-background-color: #333856;");
 
-            addMedicineShowListData();
-            addMedicineListCategory();
-            addMedicineListStatus();
-            addMedicineSearch();
-            addMedicineReset();
             homeTC();
         }
 
@@ -838,12 +984,11 @@ public class HomeController implements Initializable {
             history_form.setVisible(true);
             purchase_form.setVisible(false);
 
-            purchaseCategory();
-
             dashboard_btn.setStyle("-fx-background-color: #333856;");
             medicines_btn.setStyle("-fx-background-color: #333856;");
             customer_btn.setStyle("-fx-background-color: #333856;");
             purchase_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
+
         }
 
         if(event.getSource() == add_invoice_btn){
@@ -858,6 +1003,12 @@ public class HomeController implements Initializable {
             medicines_btn.setStyle("-fx-background-color: #333856;");
             customer_btn.setStyle("-fx-background-color: #333856;");
             purchase_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
+
+            purchaseShowListData();
+            purchaseReset();
+            purchaseCategory();
+            purchaseProductName();
+            purchaseMedicineId();
         }
     }
 
@@ -923,20 +1074,26 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         displayUsername();
+
         homeTC();
+
         addMedicineShowListData();
         addMedicineListCategory();
         addMedicineListStatus();
 
+        customerShowListData();
+
+        purchaseShowListData();
         purchaseCategory();
         purchaseProductName();
+        purchaseMedicineId();
 
-        home_form.setVisible(true);
         dashboard_form.setVisible(false);
         addMedicines_form.setVisible(false);
+        home_form.setVisible(true);
         customer_form.setVisible(false);
+        history_form.setVisible(false);
         purchase_form.setVisible(false);
 
-        customerShowListData();
     }
 }

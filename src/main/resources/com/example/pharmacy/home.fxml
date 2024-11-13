@@ -487,12 +487,10 @@
                               </AnchorPane>
                               <TableView fx:id="purchase_tableView" layoutX="5.0" layoutY="4.0" prefHeight="375.0" prefWidth="513.0" styleClass="tableview" stylesheets="@homeDesign.css">
                                  <columns>
-                                    <TableColumn fx:id="purchase_col_medicineid" prefWidth="99.72451782226562" text="Medicine ID" />
-                                    <TableColumn fx:id="purchase_col_productName" prefWidth="151.81625366210938" text="Product Name" />
-                                    <TableColumn fx:id="purchase_col_category" minWidth="6.0" prefWidth="105.18365478515625" text="Category" />
-                                    <TableColumn fx:id="purchase_col_quantity" prefWidth="61.91839599609375" text="Quantity" />
-                                    <TableColumn fx:id="purchase_col_price" minWidth="0.0" prefWidth="102.13262939453125" text="Price" />
-                                    <TableColumn fx:id="addMedicines_col_status1" prefWidth="242.54083251953125" text="Status" />
+                                    <TableColumn fx:id="purchase_col_productName" prefWidth="205.33331298828125" text="Product Name" />
+                                    <TableColumn fx:id="purchase_col_category" minWidth="6.0" prefWidth="128.66665649414062" text="Category" />
+                                    <TableColumn fx:id="purchase_col_quantity" minWidth="0.0" prefWidth="92.6666259765625" text="Quantity" />
+                                    <TableColumn fx:id="purchase_col_price" minWidth="0.0" prefWidth="87.33331298828125" text="Price" />
                                  </columns>
                               </TableView>
                               <AnchorPane layoutX="525.0" layoutY="7.0" prefHeight="252.0" prefWidth="273.0">
@@ -513,20 +511,14 @@
                                           <Font name="Tahoma" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="purchase_addBtn" layoutX="29.0" layoutY="189.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="224.0" styleClass="update-btn" stylesheets="@homeDesign.css" text="Add to Cart">
+                                    <Button fx:id="purchase_addBtn" layoutX="29.0" layoutY="189.0" mnemonicParsing="false" onAction="#purchaseAdd" prefHeight="47.0" prefWidth="224.0" styleClass="update-btn" stylesheets="@homeDesign.css" text="Add to Cart">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
                                     </Button>
-                                    <Label layoutX="16.0" layoutY="9.0" text="Cart">
+                                    <Label layoutX="16.0" layoutY="4.0" text="Cart">
                                        <font>
                                           <Font name="System Bold" size="21.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="purchase_staff" layoutX="110.0" layoutY="41.0" prefHeight="26.0" prefWidth="154.0" />
-                                    <Label layoutX="16.0" layoutY="44.0" text="Staff:">
-                                       <font>
-                                          <Font name="Tahoma" size="16.0" />
                                        </font>
                                     </Label>
                                     <Label layoutX="16.0" layoutY="150.0" text="Quantity:">
@@ -535,6 +527,12 @@
                                        </font>
                                     </Label>
                                     <TextField fx:id="purchase_quantity" layoutX="110.0" layoutY="147.0" prefHeight="26.0" prefWidth="95.0" />
+                                    <Label layoutX="16.0" layoutY="43.0" text="Medicine ID:">
+                                       <font>
+                                          <Font name="Tahoma" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="purchase_medID" layoutX="110.0" layoutY="40.0" onAction="#purchaseMedicineId" prefHeight="26.0" prefWidth="154.0" promptText="Choose..." />
                                  </children>
                               </AnchorPane>
                               <TableView fx:id="customer_tableView1" layoutX="5.0" layoutY="426.0" onMouseClicked="#customerSelect" prefHeight="165.0" prefWidth="513.0" styleClass="tableview" stylesheets="@homeDesign.css">
