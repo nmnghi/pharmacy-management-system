@@ -33,16 +33,16 @@ public class HomeController implements Initializable {
     private AnchorPane dashboard_form;
 
     @FXML
+    private AreaChart<?, ?> dashboard_chart;
+
+    @FXML
+    private Label dashboard_customer;
+
+    @FXML
+    private Label dashboard_income;
+
+    @FXML
     private AnchorPane addMedicines_form;
-
-    @FXML
-    private AnchorPane customer_form;
-
-    @FXML
-    private AnchorPane purchase_form;
-
-    @FXML
-    private AnchorPane history_form;
 
     @FXML
     private TextField addMedicines_medicineID;
@@ -85,7 +85,10 @@ public class HomeController implements Initializable {
 
     @FXML
     private TableColumn<medicineData, String> addMedicines_col_status;
-    
+
+    @FXML
+    private AnchorPane customer_form;
+
     @FXML
     private TextField customerFullName;
 
@@ -102,22 +105,34 @@ public class HomeController implements Initializable {
     private TextField customer_search;
 
     @FXML
-    private TextField customer_search1;
+    private TableView<customerData> customer_tableView;
 
     @FXML
-    private TableView<customerData> customer_tableView;
+    private TableColumn<customerData, String> customer_col_id;
+
+    @FXML
+    private TableColumn<customerData, String> customer_col_fullName;
+
+    @FXML
+    private TableColumn<customerData, String> customer_col_phoneNumber;
+
+    @FXML
+    private TableColumn<customerData, String> customer_col_points;
+
+    @FXML
+    private TableColumn<customerData, String> customer_col_date;
+
+    @FXML
+    private AnchorPane history_form;
 
     @FXML
     private TableView<historyData> history_tableView;
 
     @FXML
-    private TableColumn<historyData, String> history_col_cusName;
-
-    @FXML
-    private TableColumn<historyData, String> history_col_date;
-
-    @FXML
     private TableColumn<historyData, String> history_col_id;
+
+    @FXML
+    private TableColumn<historyData, String> history_col_cusName;
 
     @FXML
     private TableColumn<historyData, String> history_col_staffName;
@@ -126,64 +141,10 @@ public class HomeController implements Initializable {
     private TableColumn<historyData, String> history_col_total;
 
     @FXML
-    private TableView<customerData> customer_tableView1;
+    private TableColumn<historyData, String> history_col_date;
 
     @FXML
-    private TableColumn<customerData, String> customer_col_date;
-
-    @FXML
-    private TableColumn<customerData, String> customer_col_date1;
-
-    @FXML
-    private TableColumn<customerData, String> customer_col_fullName;
-
-    @FXML
-    private TableColumn<customerData, String> customer_col_fullName1;
-
-    @FXML
-    private TableColumn<customerData, String> customer_col_id;
-
-    @FXML
-    private TableColumn<customerData, String> customer_col_id1;
-
-    @FXML
-    private TableColumn<customerData, String> customer_col_phoneNumber;
-
-    @FXML
-    private TableColumn<customerData, String> customer_col_phoneNumber1;
-
-    @FXML
-    private TableColumn<customerData, String> customer_col_points;
-
-    @FXML
-    private TableColumn<customerData, String> customer_col_points1;
-
-    @FXML
-    private Label username;
-
-    @FXML
-    private Button logout;
-
-    @FXML
-    private Button dashboard_btn;
-
-    @FXML
-    private AreaChart<?, ?> dashboard_chart;
-
-    @FXML
-    private Label dashboard_customer;
-
-    @FXML
-    private Label dashboard_income;
-
-    @FXML
-    private Button medicines_btn;
-
-    @FXML
-    private Button customer_btn;
-
-    @FXML
-    private Button purchase_btn;
+    private AnchorPane purchase_form;
 
     @FXML
     private TextField staffName;
@@ -228,7 +189,46 @@ public class HomeController implements Initializable {
     private TableColumn<purchaseData, String> purchase_col_quantity;
 
     @FXML
+    private TextField customer_search1;
+
+    @FXML
+    private TableView<customerData> customer_tableView1;
+
+    @FXML
+    private TableColumn<customerData, String> customer_col_id1;
+
+    @FXML
+    private TableColumn<customerData, String> customer_col_fullName1;
+
+    @FXML
+    private TableColumn<customerData, String> customer_col_phoneNumber1;
+
+    @FXML
+    private TableColumn<customerData, String> customer_col_points1;
+
+    @FXML
+    private TableColumn<customerData, String> customer_col_date1;
+
+    @FXML
+    private Label username;
+
+    @FXML
+    private Button dashboard_btn;
+
+    @FXML
+    private Button medicines_btn;
+
+    @FXML
+    private Button customer_btn;
+
+    @FXML
+    private Button purchase_btn;
+
+    @FXML
     private Button add_invoice_btn;
+
+    @FXML
+    private Button logout;
 
     private Connection connect;
     private PreparedStatement prepare;
