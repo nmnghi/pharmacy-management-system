@@ -126,6 +126,9 @@ public class HomeController implements Initializable {
     private AnchorPane history_form;
 
     @FXML
+    private TextField history_search;
+
+    @FXML
     private TableView<historyData> history_tableView;
 
     @FXML
@@ -1085,6 +1088,42 @@ public class HomeController implements Initializable {
 
         historyId = hisData.getId();
     }
+
+    public void historySearch(){
+        String sql = "SELECT * FROM history WHERE customerName LIKE ? or staffName LIKE ? or createdDate LIKE ?";
+
+        connect = database.connectDb();
+
+        try {
+            prepare = connect.prepareStatement(sql);
+
+            prepare.setString(1, "%" + history_search.getText() + "%");
+            prepare.setString(2, "%" + history_search.getText() + "%");
+            prepare.setString(3, "%" + history_search.getText() + "%");
+
+            result = prepare.executeQuery();
+
+            ObservableList<historyData> listData = FXCollections.observableArrayList();
+
+            historyData hisData;
+
+            while (result.next()) {
+                hisData = new historyData(result.getInt("id"),
+                        result.getInt("customer_id"),
+                        result.getString("customerName"),
+                        result.getString("staffName"),
+                        result.getInt("total"),
+                        result.getDate("createdDate"));
+
+                listData.add(hisData);
+            }
+
+            history_tableView.setItems(listData);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     
     public void historyDelete(){
         String sql = "DELETE FROM history WHERE id = ?";
@@ -1468,6 +1507,7 @@ public class HomeController implements Initializable {
             purchase_btn.setStyle("-fx-background-color: #fff; -fx-text-fill: #C85F77; -fx-background-radius: 40;");
 
             historyShowListData();
+            historySearch();
             purchaseReset();
         }
 
